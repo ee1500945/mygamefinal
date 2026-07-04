@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="安格的遊戲網站">
+  <meta property="og:description" content="寒假作業">
+  <meta property="og:type" content="website">
+  <title>安格的遊戲網站</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f1a;
+      --surface: #141627;
+      --card: #1a1d35;
+      --accent: #5c6fff;
+      --accent2: #a78bfa;
+      --text: #e8eaf6;
+      --muted: #8890b8;
+      --border: #2a2e52;
+      --nav-h: 64px;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 15, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: var(--card);
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(92,111,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(92,111,255,0.12);
+      border: 1px solid rgba(92,111,255,0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .hero-badge strong {
+      color: var(--text);
+    }
+
+    /* SECTION */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 2rem 5rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(92,111,255,0.15);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-arrow {
+      margin-top: auto;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* HIGHLIGHT CARD */
+    .card.highlight {
+      background: linear-gradient(135deg, rgba(92,111,255,0.15), rgba(167,139,250,0.08));
+      border-color: rgba(92,111,255,0.4);
+      grid-column: span 2;
+    }
+
+    @media (max-width: 600px) {
+      .card.highlight { grid-column: span 1; }
+      nav { gap: 1rem; }
+      .nav-links { display: none; }
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">安格的遊戲網站</a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">首頁</a></li>
+      <li><a href="https://sites.google.com/view/ericgame/創意故事產生器">創意故事產生器</a></li>
+      <li><a href="https://sites.google.com/view/ericgame/射擊遊戲">射擊遊戲</a></li>
+      <li><a href="https://sites.google.com/view/ericgame/籃球遊戲">籃球遊戲</a></li>
+      <li><a href="https://sites.google.com/view/ericgame/桌球遊戲">桌球遊戲</a></li>
+      <li><a href="https://sites.google.com/view/ericgame/舒壓遊戲">舒壓遊戲</a></li>
+      <li><a href="https://sites.google.com/view/ericgame/跑酷遊戲">跑酷遊戲</a></li>
+      <li><a href="https://www.canva.com/design/DAHAh4WMYME/J3SvwCV9tgxJaMDkfPzusg/edit">簡報連結</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-tag">寒假作業</div>
+    <h1>安格的<span>遊戲網站</span></h1>
+    <p class="hero-sub">主題：如何用 AI 做程式？</p>
+    <div class="hero-badge">
+      <span>👤</span>
+      <span>505 <strong>鄭安格</strong></span>
+    </div>
+  </section>
+
+  <main class="section">
+    <p class="section-title">所有遊戲與功能</p>
+    <div class="grid">
+
+      <a class="card highlight" href="https://sites.google.com/view/ericgame/創意故事產生器">
+        <div class="card-icon">✨</div>
+        <div class="card-title">創意故事產生器</div>
+        <div class="card-desc">利用 AI 自動生成獨一無二的創意故事，每次都有不同的驚喜情節！</div>
+        <div class="card-arrow">進入 →</div>
+      </a>
+
+      <a class="card" href="https://sites.google.com/view/ericgame/射擊遊戲">
+        <div class="card-icon">🔫</div>
+        <div class="card-title">射擊遊戲</div>
+        <div class="card-desc">考驗你的反應速度與準度的射擊挑戰。</div>
+        <div class="card-arrow">開始遊戲 →</div>
+      </a>
+
+      <a class="card" href="https://sites.google.com/view/ericgame/籃球遊戲">
+        <div class="card-icon">🏀</div>
+        <div class="card-title">籃球遊戲</div>
+        <div class="card-desc">投進籃框，累積高分，挑戰你的投籃技巧！</div>
+        <div class="card-arrow">開始遊戲 →</div>
+      </a>
+
+      <a class="card" href="https://sites.google.com/view/ericgame/桌球遊戲">
+        <div class="card-icon">🏓</div>
+        <div class="card-title">桌球遊戲</div>
+        <div class="card-desc">節奏緊湊的桌球對決，看你能撐幾回合！</div>
+        <div class="card-arrow">開始遊戲 →</div>
+      </a>
+
+      <a class="card" href="https://sites.google.com/view/ericgame/舒壓遊戲">
+        <div class="card-icon">🌿</div>
+        <div class="card-title">舒壓遊戲</div>
+        <div class="card-desc">放鬆心情，享受輕鬆愉快的互動體驗。</div>
+        <div class="card-arrow">開始遊戲 →</div>
+      </a>
+
+      <a class="card" href="https://sites.google.com/view/ericgame/跑酷遊戲">
+        <div class="card-icon">🏃</div>
+        <div class="card-title">跑酷遊戲</div>
+        <div class="card-desc">躲避障礙、一路奔跑，看你能跑多遠！</div>
+        <div class="card-arrow">開始遊戲 →</div>
+      </a>
+
+      <a class="card" href="https://www.canva.com/design/DAHAh4WMYME/J3SvwCV9tgxJaMDkfPzusg/edit" target="_blank">
+        <div class="card-icon">📊</div>
+        <div class="card-title">簡報連結</div>
+        <div class="card-desc">查看這個專案的 Canva 簡報，了解製作過程與 AI 應用。</div>
+        <div class="card-arrow">開啟簡報 →</div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    © 505 鄭安格 · 安格的遊戲網站 · 寒假作業
+  </footer>
+
+</body>
+</html>
