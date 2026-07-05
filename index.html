@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="安格的遊戲網站">
-  <meta property="og:description" content="寒假作業">
+  <meta property="og:description" content="寒假作業 - 505鄭安格">
   <meta property="og:type" content="website">
   <title>安格的遊戲網站</title>
+
+  <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -14,82 +16,104 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xh32ec34vl");
   </script>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@700;900&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0f1a;
-      --surface: #141627;
-      --card: #1a1d35;
+      --bg: #080b18;
+      --surface: #0e1225;
+      --card: #131729;
+      --card2: #181d35;
       --accent: #5c6fff;
       --accent2: #a78bfa;
+      --accent3: #34d399;
       --text: #e8eaf6;
-      --muted: #8890b8;
-      --border: #2a2e52;
-      --nav-h: 64px;
+      --muted: #7b84b0;
+      --border: #222748;
+      --nav-h: 60px;
+      --glow: rgba(92,111,255,0.18);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Noto Sans TC', sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(13, 15, 26, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
       height: var(--nav-h);
+      background: rgba(8,11,24,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      padding: 0 2rem;
-      gap: 2rem;
+      padding: 0 1.5rem;
+      gap: 0.5rem;
     }
 
     .nav-logo {
-      font-size: 1.1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
       font-weight: 900;
-      color: var(--text);
-      text-decoration: none;
-      white-space: nowrap;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      white-space: nowrap;
+      margin-right: 0.5rem;
+      cursor: pointer;
     }
 
     .nav-links {
       display: flex;
-      gap: 0.25rem;
+      gap: 2px;
       list-style: none;
       flex-wrap: wrap;
+      overflow: hidden;
     }
 
-    .nav-links a {
+    .nav-links button {
+      background: none;
+      border: none;
       color: var(--muted);
-      text-decoration: none;
-      font-size: 0.88rem;
-      padding: 0.4rem 0.75rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.82rem;
+      padding: 0.35rem 0.7rem;
       border-radius: 6px;
+      cursor: pointer;
       transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links button:hover,
+    .nav-links button.active {
       color: var(--text);
-      background: var(--card);
+      background: var(--card2);
     }
 
-    /* HERO */
+    /* ── PAGES ── */
+    .page {
+      display: none;
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+    }
+    .page.active { display: block; }
+
+    /* ── HOME HERO ── */
     .hero {
       text-align: center;
-      padding: 6rem 2rem 4rem;
+      padding: 5rem 1.5rem 3rem;
       position: relative;
       overflow: hidden;
     }
@@ -97,34 +121,33 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -100px;
-      left: 50%;
+      top: -80px; left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(92,111,255,0.15) 0%, transparent 70%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(92,111,255,0.12) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .hero-tag {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(92,111,255,0.12);
+      background: rgba(92,111,255,0.1);
       border: 1px solid rgba(92,111,255,0.3);
-      padding: 0.3rem 0.9rem;
+      padding: 0.28rem 0.85rem;
       border-radius: 999px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 6vw, 3.6rem);
       font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 1rem;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
     }
 
     .hero h1 span {
@@ -134,7 +157,7 @@
     }
 
     .hero-sub {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--muted);
       margin-bottom: 2.5rem;
     }
@@ -145,190 +168,567 @@
       gap: 0.5rem;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.95rem;
+      border-radius: 10px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
-    .hero-badge strong {
-      color: var(--text);
-    }
+    .hero-badge strong { color: var(--text); }
 
-    /* SECTION */
-    .section {
+    /* ── GAME GRID ── */
+    .game-grid {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 2rem 2rem 5rem;
-    }
-
-    .section-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    /* GRID */
-    .grid {
+      padding: 0 1.5rem 5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1rem;
     }
 
-    .card {
+    .game-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      text-decoration: none;
-      color: inherit;
+      border-radius: 16px;
+      padding: 1.6rem;
+      cursor: pointer;
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.55rem;
+      position: relative;
+      overflow: hidden;
+      text-align: left;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: 0 8px 32px rgba(92,111,255,0.15);
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.2s;
     }
 
-    .card-icon {
-      font-size: 2rem;
-      line-height: 1;
+    .game-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(92,111,255,0.5);
+      box-shadow: 0 12px 40px var(--glow);
     }
+
+    .game-card:hover::before { opacity: 1; }
+
+    .card-icon { font-size: 2.2rem; line-height: 1; }
 
     .card-title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text);
     }
 
     .card-desc {
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
+      flex: 1;
     }
 
-    .card-arrow {
-      margin-top: auto;
-      font-size: 0.8rem;
+    .card-cta {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
       color: var(--accent);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
-    /* HIGHLIGHT CARD */
-    .card.highlight {
-      background: linear-gradient(135deg, rgba(92,111,255,0.15), rgba(167,139,250,0.08));
-      border-color: rgba(92,111,255,0.4);
-      grid-column: span 2;
+    .card-cta::after { content: '→'; transition: transform 0.2s; }
+    .game-card:hover .card-cta::after { transform: translateX(4px); }
+
+    /* ── GAME PAGE ── */
+    .game-page-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
     }
 
-    @media (max-width: 600px) {
-      .card.highlight { grid-column: span 1; }
-      nav { gap: 1rem; }
-      .nav-links { display: none; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 0.82rem;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .back-btn:hover { color: var(--text); border-color: var(--accent); }
+
+    .game-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .game-icon-big { font-size: 3rem; }
+
+    .game-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .game-subtitle {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* PLAY BUTTON */
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 24px var(--glow);
+    }
+
+    .play-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* INSTRUCTIONS */
+    .instructions {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+    }
+
+    .instructions h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .instructions h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .instructions p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.5rem;
+    }
+
+    .instructions ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .instructions li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .instructions li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.15rem;
+    }
+
+    .instructions li strong { color: var(--text); }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
     }
 
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
+      padding: 1.5rem;
+      font-size: 0.78rem;
       color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .game-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ── NAV ── -->
   <nav>
-    <a class="nav-logo" href="#">安格的遊戲網站</a>
+    <span class="nav-logo" onclick="showPage('home')">安格遊戲</span>
     <ul class="nav-links">
-      <li><a href="#" class="active">首頁</a></li>
-      <li><a href="https://sites.google.com/view/ericgame/創意故事產生器">創意故事產生器</a></li>
-      <li><a href="https://sites.google.com/view/ericgame/射擊遊戲">射擊遊戲</a></li>
-      <li><a href="https://sites.google.com/view/ericgame/籃球遊戲">籃球遊戲</a></li>
-      <li><a href="https://sites.google.com/view/ericgame/桌球遊戲">桌球遊戲</a></li>
-      <li><a href="https://sites.google.com/view/ericgame/舒壓遊戲">舒壓遊戲</a></li>
-      <li><a href="https://sites.google.com/view/ericgame/跑酷遊戲">跑酷遊戲</a></li>
-      <li><a href="https://www.canva.com/design/DAHAh4WMYME/J3SvwCV9tgxJaMDkfPzusg/edit">簡報連結</a></li>
+      <li><button onclick="showPage('home')" id="nav-home" class="active">首頁</button></li>
+      <li><button onclick="showPage('story')" id="nav-story">✨ 故事產生器</button></li>
+      <li><button onclick="showPage('shooter')" id="nav-shooter">🔫 射擊</button></li>
+      <li><button onclick="showPage('basketball')" id="nav-basketball">🏀 籃球</button></li>
+      <li><button onclick="showPage('pingpong')" id="nav-pingpong">🏓 桌球</button></li>
+      <li><button onclick="showPage('relax')" id="nav-relax">🌿 舒壓</button></li>
+      <li><button onclick="showPage('parkour')" id="nav-parkour">🏃 跑酷</button></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <div class="hero-tag">寒假作業</div>
-    <h1>安格的<span>遊戲網站</span></h1>
-    <p class="hero-sub">主題：如何用 AI 做程式？</p>
-    <div class="hero-badge">
-      <span>👤</span>
-      <span>505 <strong>鄭安格</strong></span>
-    </div>
-  </section>
+  <!-- ══════════════════════════════════ HOME ══════════════════════════════════ -->
+  <div class="page active" id="page-home">
+    <section class="hero">
+      <div class="hero-tag">寒假作業</div>
+      <h1>安格的<br><span>遊戲網站</span></h1>
+      <p class="hero-sub">主題：如何用 AI 做程式？</p>
+      <div class="hero-badge">
+        <span>👤</span>
+        <span>505 <strong>鄭安格</strong></span>
+      </div>
+    </section>
 
-  <main class="section">
-    <p class="section-title">所有遊戲與功能</p>
-    <div class="grid">
-
-      <a class="card highlight" href="https://sites.google.com/view/ericgame/創意故事產生器">
+    <div class="game-grid">
+      <div class="game-card" onclick="showPage('story')">
         <div class="card-icon">✨</div>
         <div class="card-title">創意故事產生器</div>
-        <div class="card-desc">利用 AI 自動生成獨一無二的創意故事，每次都有不同的驚喜情節！</div>
-        <div class="card-arrow">進入 →</div>
-      </a>
+        <div class="card-desc">AI 自動生成獨一無二的奇幻、偵探或冒險故事，還能下載 Word 檔帶回家！</div>
+        <div class="card-cta">進入體驗</div>
+      </div>
 
-      <a class="card" href="https://sites.google.com/view/ericgame/射擊遊戲">
+      <div class="game-card" onclick="showPage('shooter')">
         <div class="card-icon">🔫</div>
-        <div class="card-title">射擊遊戲</div>
-        <div class="card-desc">考驗你的反應速度與準度的射擊挑戰。</div>
-        <div class="card-arrow">開始遊戲 →</div>
-      </a>
+        <div class="card-title">射擊遊戲｜星雲突擊 AI</div>
+        <div class="card-desc">結合 Google Gemini AI 的太空射擊遊戲，每次開局都有 AI 生成的星際飛行員激勵台詞！</div>
+        <div class="card-cta">開始遊戲</div>
+      </div>
 
-      <a class="card" href="https://sites.google.com/view/ericgame/籃球遊戲">
+      <div class="game-card" onclick="showPage('basketball')">
         <div class="card-icon">🏀</div>
         <div class="card-title">籃球遊戲</div>
-        <div class="card-desc">投進籃框，累積高分，挑戰你的投籃技巧！</div>
-        <div class="card-arrow">開始遊戲 →</div>
-      </a>
+        <div class="card-desc">60 秒內挑戰最高分！空心進球得 3 分，連進有連勝獎勵，AI 主播即時幫你評論！</div>
+        <div class="card-cta">開始遊戲</div>
+      </div>
 
-      <a class="card" href="https://sites.google.com/view/ericgame/桌球遊戲">
+      <div class="game-card" onclick="showPage('pingpong')">
         <div class="card-icon">🏓</div>
         <div class="card-title">桌球遊戲</div>
-        <div class="card-desc">節奏緊湊的桌球對決，看你能撐幾回合！</div>
-        <div class="card-arrow">開始遊戲 →</div>
-      </a>
+        <div class="card-desc">與電腦對決的刺激乒乓球！先拿到 5 分就是乒乓球王，來回越多球越快！</div>
+        <div class="card-cta">開始遊戲</div>
+      </div>
 
-      <a class="card" href="https://sites.google.com/view/ericgame/舒壓遊戲">
+      <div class="game-card" onclick="showPage('relax')">
         <div class="card-icon">🌿</div>
         <div class="card-title">舒壓遊戲</div>
-        <div class="card-desc">放鬆心情，享受輕鬆愉快的互動體驗。</div>
-        <div class="card-arrow">開始遊戲 →</div>
-      </a>
+        <div class="card-desc">用力按大泡泡 10 次，它會變色然後「砰」地爆開噴碎片，心情不好按它超舒壓！</div>
+        <div class="card-cta">開始遊戲</div>
+      </div>
 
-      <a class="card" href="https://sites.google.com/view/ericgame/跑酷遊戲">
+      <div class="game-card" onclick="showPage('parkour')">
         <div class="card-icon">🏃</div>
         <div class="card-title">跑酷遊戲</div>
-        <div class="card-desc">躲避障礙、一路奔跑，看你能跑多遠！</div>
-        <div class="card-arrow">開始遊戲 →</div>
-      </a>
-
-      <a class="card" href="https://www.canva.com/design/DAHAh4WMYME/J3SvwCV9tgxJaMDkfPzusg/edit" target="_blank">
-        <div class="card-icon">📊</div>
-        <div class="card-title">簡報連結</div>
-        <div class="card-desc">查看這個專案的 Canva 簡報，了解製作過程與 AI 應用。</div>
-        <div class="card-arrow">開啟簡報 →</div>
-      </a>
-
+        <div class="card-desc">在霓虹賽博龐克世界中奔跑！閃避飛龍、跳越障礙，AI 教練替你跑後分析！</div>
+        <div class="card-cta">開始遊戲</div>
+      </div>
     </div>
-  </main>
 
-  <footer>
-    © 505 鄭安格 · 安格的遊戲網站 · 寒假作業
-  </footer>
+    <footer>© 505 鄭安格 · 安格的遊戲網站 · 寒假作業</footer>
+  </div>
+
+  <!-- ══════════════════════════════════ STORY ══════════════════════════════════ -->
+  <div class="page" id="page-story">
+    <div class="game-page-inner">
+      <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+      <div class="game-header">
+        <div class="game-icon-big">✨</div>
+        <div>
+          <div class="game-title">創意故事產生器</div>
+          <div class="game-subtitle">AI 幫你寫出獨一無二的故事</div>
+        </div>
+      </div>
+
+      <a class="play-btn" href="https://gemini.google.com/share/45bd4d1896e5" target="_blank">
+        ▶ 立即開啟故事產生器
+      </a>
+
+      <div class="instructions">
+        <h3>📝 使用說明</h3>
+        <h4>1. 填寫冒險計畫（左側面板）</h4>
+        <ul>
+          <li><strong>選類型與長度：</strong>想要奇幻冒險還是偵探解謎？短篇還是長篇？</li>
+          <li><strong>設定主角與場景：</strong>輸入你想當主角的人或動物，還有探險的地點。</li>
+          <li><strong>點子百寶箱：</strong>沒靈感？點一下「抽點子」讓機器人幫你出主意！</li>
+        </ul>
+        <h4>2. 啟動魔法（開始寫故事）</h4>
+        <ul>
+          <li>按下「開始寫故事」，右邊的稿紙就會開始孵化出精彩的內容。</li>
+        </ul>
+        <h4>3. 動手改改看（編輯與微調）</h4>
+        <ul>
+          <li><strong>直接改字：</strong>右邊的稿紙可以直接點進去刪減或加字，就像在作文簿上寫字一樣。</li>
+          <li><strong>神奇修改筆：</strong>如果想讓故事「變好笑一點」或「加個怪獸」，在左下角輸入建議讓 AI 幫你重寫。</li>
+        </ul>
+        <h4>4. 永久收藏（下載與分享）</h4>
+        <ul>
+          <li><strong>複製全文：</strong>方便你貼到 LINE 或其他地方。</li>
+          <li><strong>下載 Word 檔：</strong>按一下藍色按鈕，就能把你的大作存成 Word 檔案帶回家！</li>
+        </ul>
+      </div>
+    </div>
+    <footer>© 505 鄭安格 · 安格的遊戲網站</footer>
+  </div>
+
+  <!-- ══════════════════════════════════ SHOOTER ══════════════════════════════════ -->
+  <div class="page" id="page-shooter">
+    <div class="game-page-inner">
+      <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+      <div class="game-header">
+        <div class="game-icon-big">🔫</div>
+        <div>
+          <div class="game-title">星雲突擊 AI</div>
+          <div class="game-subtitle">結合 Google Gemini 的太空射擊遊戲</div>
+        </div>
+      </div>
+
+      <a class="play-btn" href="https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221hUcQ1NIg-xqom8ayB1pC7BT_MbIowqgd%22%5D,%22action%22:%22open%22,%22userId%22:%22108114734504385339529%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing" target="_blank">
+        ▶ 立即開始射擊
+      </a>
+
+      <div class="instructions">
+        <h3>🎮 遊戲說明</h3>
+        <h4>1. 遊戲核心機制</h4>
+        <ul>
+          <li><strong>射擊：</strong>按下空白鍵發射等離子炮火。</li>
+          <li><strong>生存與得分：</strong>消滅敵方單位並累積分數，左上角紅色條代表戰機裝甲。</li>
+          <li><strong>等級提升：</strong>每獲得 5,000 分自動切換至下一等級，難度隨之提升。</li>
+        </ul>
+        <h4>2. AI 驅動的動態內容</h4>
+        <ul>
+          <li><strong>動態開場：</strong>每次進入遊戲，AI 為你生成專屬的星際飛行員激勵台詞。</li>
+          <li><strong>BOSS 威脅情報：</strong>升級前進入「BOSS 探測模式」，AI 即時生成頭目名稱、威脅評級與反派台詞。</li>
+        </ul>
+        <h4>3. 敵人種類</h4>
+        <ul>
+          <li><strong>基礎型（紅色）：</strong>規律移動，提供穩定分數。</li>
+          <li><strong>高速型（綠色）：</strong>移動速度極快，考驗射擊精準度。</li>
+          <li><strong>重裝型（紫色）：</strong>生命值極高，需要持續火力才能擊毀。</li>
+        </ul>
+        <h4>4. 視覺氛圍</h4>
+        <ul>
+          <li>賽博龐克美學：霓虹青色戰機 vs 玫瑰紅敵人。</li>
+          <li>擊毀敵人時有精緻的能量碎片噴發效果。</li>
+        </ul>
+      </div>
+    </div>
+    <footer>© 505 鄭安格 · 安格的遊戲網站</footer>
+  </div>
+
+  <!-- ══════════════════════════════════ BASKETBALL ══════════════════════════════════ -->
+  <div class="page" id="page-basketball">
+    <div class="game-page-inner">
+      <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+      <div class="game-header">
+        <div class="game-icon-big">🏀</div>
+        <div>
+          <div class="game-title">籃球遊戲</div>
+          <div class="game-subtitle">60 秒挑戰最高分，AI 主播即時評論</div>
+        </div>
+      </div>
+
+      <a class="play-btn" href="https://ai.studio/apps/drive/14nGd33lA4cCk5YBTAQWIUauhbRZA-W1C?fullscreenApplet=true" target="_blank">
+        ▶ 立即開始投籃
+      </a>
+
+      <div class="instructions">
+        <h3>🎮 遊戲說明</h3>
+        <h4>1. 核心操作：投籃方式</h4>
+        <ul>
+          <li><strong>按住並拉動：</strong>在籃球上按住並拉動，像拉彈弓一樣，拉越長力量越大。</li>
+          <li><strong>瞄準線：</strong>拉動時出現虛線預測軌道，幫助判斷球的路徑。</li>
+          <li><strong>釋放投籃：</strong>調整角度與力道後放開，球就會飛向籃框。</li>
+        </ul>
+        <h4>2. 計分規則</h4>
+        <ul>
+          <li><strong>普通進球（2 分）：</strong>球碰觸籃圈或籃板後彈入。</li>
+          <li><strong>空心進球 Swish（3 分）：</strong>球完全沒有碰觸籃框，乾淨入網！</li>
+          <li><strong>連進獎勵（Streak）：</strong>連續投進觸發連勝模式，畫面顯示「連進中🔥」！</li>
+        </ul>
+        <h4>3. 場地物理特色</h4>
+        <ul>
+          <li>左右牆壁、天花板都有彈性，可嘗試打板得分或牆壁反彈花式投籃。</li>
+        </ul>
+        <h4>4. 遊戲挑戰</h4>
+        <ul>
+          <li><strong>限時 60 秒：</strong>挑戰最高分，最後 10 秒計時器變紅警告！</li>
+          <li><strong>AI 現場評述：</strong>畫面下方的 AI 體育主播會即時生成熱血繁體中文評論！</li>
+        </ul>
+      </div>
+    </div>
+    <footer>© 505 鄭安格 · 安格的遊戲網站</footer>
+  </div>
+
+  <!-- ══════════════════════════════════ PINGPONG ══════════════════════════════════ -->
+  <div class="page" id="page-pingpong">
+    <div class="game-page-inner">
+      <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+      <div class="game-header">
+        <div class="game-icon-big">🏓</div>
+        <div>
+          <div class="game-title">桌球遊戲</div>
+          <div class="game-subtitle">先拿 5 分就是乒乓球王！</div>
+        </div>
+      </div>
+
+      <a class="play-btn" href="https://gemini.google.com/share/101c1a9faf31" target="_blank">
+        ▶ 立即開始對決
+      </a>
+
+      <div class="instructions">
+        <h3>🎮 遊戲說明</h3>
+        <p>超刺激的桌球大對抗！你的任務是操作左邊的藍色球拍，把球打回去，別讓球漏掉。</p>
+        <h4>🕹️ 怎麼控制？</h4>
+        <ul>
+          <li><strong>滑鼠或手指：</strong>上下移動，你的球拍就會跟著動。</li>
+          <li><strong>防守重點：</strong>別讓球越過你的球拍碰到左邊牆壁，不然電腦會加分。</li>
+        </ul>
+        <h4>🏆 怎麼加分？</h4>
+        <ul>
+          <li><strong>進攻：</strong>瞄準電腦（紅色球拍）擋不到的地方。</li>
+          <li><strong>得分：</strong>球成功穿過紅色球拍碰到右邊牆壁，你得 1 分。</li>
+          <li><strong>獲勝：</strong>先拿到 5 分就是乒乓球王！</li>
+        </ul>
+        <h4>💡 小祕訣</h4>
+        <ul>
+          <li><strong>反彈角度：</strong>用球拍的「角落」撞球，球會飛得歪歪斜斜，讓電腦更難接到！</li>
+          <li><strong>速度加快：</strong>來回次數越多，球越跑越快，眼睛要盯緊！</li>
+        </ul>
+      </div>
+    </div>
+    <footer>© 505 鄭安格 · 安格的遊戲網站</footer>
+  </div>
+
+  <!-- ══════════════════════════════════ RELAX ══════════════════════════════════ -->
+  <div class="page" id="page-relax">
+    <div class="game-page-inner">
+      <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+      <div class="game-header">
+        <div class="game-icon-big">🌿</div>
+        <div>
+          <div class="game-title">舒壓遊戲</div>
+          <div class="game-subtitle">心情不好按它超舒壓！</div>
+        </div>
+      </div>
+
+      <a class="play-btn" href="https://gemini.google.com/share/a9001b4939e1" target="_blank">
+        ▶ 立即開始舒壓
+      </a>
+
+      <div class="instructions">
+        <h3>🎮 遊戲說明</h3>
+        <p>這遊戲超簡單！用力按大泡泡 10 次，它會變色然後「砰」地爆開噴碎片。按完點「再玩一次」就能繼續。心情不好按它超舒壓！</p>
+        <div class="divider"></div>
+        <ul>
+          <li>點擊大泡泡，每次點擊泡泡會變色。</li>
+          <li>連續點擊 10 次後泡泡爆炸噴碎片！</li>
+          <li>按「再玩一次」繼續享受爆破的快感。</li>
+        </ul>
+      </div>
+    </div>
+    <footer>© 505 鄭安格 · 安格的遊戲網站</footer>
+  </div>
+
+  <!-- ══════════════════════════════════ PARKOUR ══════════════════════════════════ -->
+  <div class="page" id="page-parkour">
+    <div class="game-page-inner">
+      <button class="back-btn" onclick="showPage('home')">← 返回首頁</button>
+      <div class="game-header">
+        <div class="game-icon-big">🏃</div>
+        <div>
+          <div class="game-title">跑酷遊戲</div>
+          <div class="game-subtitle">霓虹賽博龐克世界的極速冒險</div>
+        </div>
+      </div>
+
+      <a class="play-btn" href="https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221HHDqhfEXphqqA73L2zRmwTAzaRKZk7G0%22%5D,%22action%22:%22open%22,%22userId%22:%22108114734504385339529%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing" target="_blank">
+        ▶ 立即開始跑酷
+      </a>
+
+      <div class="instructions">
+        <h3>🎮 遊戲說明</h3>
+        <h4>🕹️ 基本操作</h4>
+        <ul>
+          <li><strong>跳躍：</strong>按下空白鍵或 ↑ 鍵，越過地面障礙物或躲避低飛飛龍。</li>
+          <li><strong>滑行：</strong>按下 ↓ 鍵或左 Shift 鍵，縮小身形穿越雷射門或高空威脅。</li>
+        </ul>
+        <h4>🐉 核心挑戰：霓虹飛龍</h4>
+        <ul>
+          <li>地圖中隨機出現的霓虹飛龍是致命威脅！</li>
+          <li>飛龍飛低 → 使用跳躍越過。</li>
+          <li>飛龍飛高 → 保持警戒或使用滑行。</li>
+        </ul>
+        <h4>🤖 AI 流動作業</h4>
+        <ul>
+          <li><strong>即時建議：</strong>遊戲中隨時輸入問題（如「如何避開飛龍？」），AI 教練立即給你專業建議。</li>
+          <li><strong>跑後分析：</strong>每次遊戲結束後，AI 教練自動分析你的距離、跳躍與滑行數據，給予精準評價。</li>
+        </ul>
+      </div>
+    </div>
+    <footer>© 505 鄭安格 · 安格的遊戲網站</footer>
+  </div>
+
+  <script>
+    const pages = ['home','story','shooter','basketball','pingpong','relax','parkour'];
+
+    function showPage(name) {
+      pages.forEach(p => {
+        document.getElementById('page-' + p).classList.remove('active');
+        const btn = document.getElementById('nav-' + p);
+        if (btn) btn.classList.remove('active');
+      });
+      document.getElementById('page-' + name).classList.add('active');
+      const btn = document.getElementById('nav-' + name);
+      if (btn) btn.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
 
 </body>
 </html>
